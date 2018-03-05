@@ -1,0 +1,42 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: install packages for testing under docker
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+
+    - name: apt repo
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+        state: present
+
+    - name: Add an Apt signing key, will not download if present
+      apt_key:
+        id: 0EBFCD88
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: "Install latest docker-ce package"
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
+
+#    - name:  create /etc/Docker
+#      file:
+#        name: /etc/docker
+#        state: directory
+#      changed_when: False

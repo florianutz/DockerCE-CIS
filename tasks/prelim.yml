@@ -1,0 +1,17 @@
+---
+- name: "ensure audit daemon is installed"
+  package:
+    name: "{{ auditd_package[ansible_os_family] }}"
+    state: present
+  notify: auditd restart
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2
+    - manual_check
+
+- name: enable service auditd and ensure it is not masked
+  systemd:
+    name: auditd
+    enabled: yes
+    masked: no

@@ -1,0 +1,27 @@
+---
+# defaults file for DockerCE-CIS
+
+auditd_package:
+  RedHat: audit
+  Debian: auditd
+auditd_config_file:
+  RedHat: /etc/audit/rules.d/docker.rules
+  Debian: /etc/audit/rules.d/docker.rules
+auditd_service:
+  RedHat: auditd
+  Debian: auditd
+
+install_docker_ce: false
+cleanup_docker_working_dir: false
+
+cis_rule_1_1: false
+
+cis_rule_2_1: "false"
+cis_rule_2_2: "info"
+cis_rule_2_3: "true"
+cis_rule_2_8: "default"
+cis_rule_2_13: "true"
+cis_rule_2_14: "true"
+cis_rule_2_15: "false"
+cis_rule_2_17: !unsafe docker version --format '{{ .Server.Experimental }}'
+cis_rule_2_18: "true"

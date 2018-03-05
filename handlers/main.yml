@@ -1,0 +1,18 @@
+---
+# handlers file for DockerCE-CIS
+- name: auditd restart
+  become: yes
+  service:
+    name: "{{ auditd_service[ansible_os_family]}}"
+    state: restarted
+  when: ansible_virtualization_type != "docker"
+
+- name: docker restart
+  service:
+    name: docker
+    state: restarted
+  when: ansible_virtualization_type != "docker"
+
+- name: load audit rules
+  command: "/sbin/augenrules --load"
+  when: ansible_virtualization_type != "docker"

@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Florian Utz
+  description: Ansible role to apply Docker CE CIS Baseline
+  company:
+  license: MIT
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: Ubuntu
+    versions:
+      - xenial
+  - name: EL
+    versions:
+      - 7
+
+  galaxy_tags:
+    - system
+    - docker
+    - security
+    - cis
+    - hardening
+
+dependencies: []
+# List your role dependencies here, one per line. Be sure to remove the '[]' above,
+# if you add dependencies to this list.

@@ -1,0 +1,10 @@
+---
+# tasks file for docker-engine-cis
+- name: CIS Docker Community Edition Benchmark prelim tasks
+  include_tasks: prelim.yml
+
+- name: CIS Docker Community Edition Benchmark Section 1
+  include_tasks: section1.yml
+
+- name: CIS Docker Community Edition Benchmark Section 2
+  include_tasks: section2.yml

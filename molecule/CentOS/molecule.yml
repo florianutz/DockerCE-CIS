@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  enabled: false
+platforms:
+  - name: CentOS
+    image: centos/systemd:latest
+    privileged: True
+    command: /sbin/init
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: CentOS
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
+  enabled: false

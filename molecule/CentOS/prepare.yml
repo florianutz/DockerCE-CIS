@@ -1,0 +1,39 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: install packages for testing under docker
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+        - e2fsprogs
+
+    - name: Add repository
+      yum_repository:
+        name: docker-ce-stable
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: yes
+
+    - name: "Install latest docker-ce package"
+      yum:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
+
+#    - name:  create /etc/Docker
+#      file:
+#        name: /etc/docker
+#        state: directory
+#      changed_when: False

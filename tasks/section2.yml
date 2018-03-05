@@ -1,0 +1,25 @@
+---
+- name: "SCORED | 2.1 | Ensure network traffic is restricted between containers on the default bridge\n
+         SCORED | 2.2 | Ensure the logging level is set to 'info'\n
+         SCORED | 2.3 | Ensure Docker is allowed to make changes to iptables\n
+         SCORED | 2.8 | Enable user namespace support\n
+         SCORED | 2.13 | Ensure operations on legacy registry (v1) are Disabled\n
+         SCORED | 2.14 | Ensure live restore is Enabled\n
+         SCORED | 2.15 | Ensure Userland Proxy is Disabled\n
+         SCORED | 2.17 | Ensure experimental features are avoided in production\n
+         SCORED | 2.18 | Ensure containers are restricted from acquiring new privileges"
+  template:
+    src: daemon.json.j2
+    dest: "/etc/docker/daemon.json"
+  tags:
+    - level1_docker
+    - scored
+    - rule_2.1
+
+#2.8 user namespaces
+- name: "SCORED | 2.17 | Ensure experimental features are avoided in production"
+  command: "{{ cis_rule_2_17 }}"
+  register: docker_experimental_status
+  changed_when: no
+  check_mode: no
+  failed_when: docker_experimental_status.stdout == "true"
