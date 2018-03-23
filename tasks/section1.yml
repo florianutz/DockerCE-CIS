@@ -78,7 +78,7 @@
     state: present
     create: yes
     dest: "{{ auditd_config_file[ansible_os_family] }}"
-    line: "-w /usr/lib/systemd/system/docker.service -k docker"
+    line: "-w /lib/systemd/system/docker.service -k docker"
   notify: load audit rules
   tags:
     - level1_host
@@ -90,7 +90,7 @@
     state: present
     create: yes
     dest: "{{ auditd_config_file[ansible_os_family] }}"
-    line: "-w /usr/lib/systemd/system/docker.socket -k docker"
+    line: "-w /lib/systemd/system/docker.socket -k docker"
   notify: load audit rules
   tags:
     - level1_host
