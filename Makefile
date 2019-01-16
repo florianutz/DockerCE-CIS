@@ -32,6 +32,7 @@ bin/python:
 	## System's python 2.7 needs only 2 things:
 	# pip is the package manager for python
 	pip -V || sudo easy_install pip
+	python --version
 	# virtualenv allows isolation of python libraries
 	virtualenv --version || sudo easy_install virtualenv
 
@@ -62,3 +63,8 @@ compare:
 	cp docker.yml molecule.yml
 	molecule test
 	diff tests/vagrant.txt tests/docker.txt
+
+.PHONY: travis
+travis:
+	pip install -r requirements.txt
+	molecule test
