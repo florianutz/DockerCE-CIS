@@ -45,8 +45,8 @@ There are many role variables defined in defaults/main.yml. This list shows the 
 ##### 2.8 | Enable user namespace support
 `cis_rule_2_8: "default"`
 
-##### 2.13 | Ensure operations on legacy registry (v1) are Disabled
-`cis_rule_2_13: "true"`
+##### 2.13 | Ensure operations on legacy registry (v1) are Disabled (no longer supported by Docker CE)
+
 
 ##### 2.14 | Ensure live restore is Enabled
 `cis_rule_2_14: "true"`

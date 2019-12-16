@@ -20,7 +20,6 @@ cis_rule_2_1: "false"
 cis_rule_2_2: "info"
 cis_rule_2_3: "true"
 cis_rule_2_8: "default"
-cis_rule_2_13: "true"
 cis_rule_2_14: "true"
 cis_rule_2_15: "false"
 cis_rule_2_17: !unsafe docker version --format '{{ .Server.Experimental }}'
